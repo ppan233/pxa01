@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>潘相安的记录</title>
+</head>
+<body>
+    <h1>这里是潘相安的日常记录</h1>
+    <input type="file" id="upload" accept="image/*">
+    <button onclick="uploadPhoto()">上传照片</button>
+    <div id="gallery"></div>
+
+    <script>
+        const gallery = document.getElementById('gallery');
+
+        function uploadPhoto() {
+            const fileInput = document.getElementById('upload');
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    gallery.appendChild(img);
+                    // 这里可以将图片数据保存到服务器或本地存储，以便下次加载
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // 页面加载时尝试从本地存储加载照片
+        window.onload = function() {
+            // 假设我们有一个函数loadPhotos()来从服务器获取照片列表并显示
+            // loadPhotos();
+        };
+    </script>
+</body>
+</html>
